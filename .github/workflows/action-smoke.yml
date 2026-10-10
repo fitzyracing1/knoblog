@@ -1,0 +1,26 @@
+# Proves the published reference `fitzyracing1/knoblog@v0` resolves and runs, exactly as users consume it.
+name: action-smoke
+on:
+  release:
+    types: [published]
+  schedule:
+    - cron: '41 7 * * 1'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - id: kb
+        uses: fitzyracing1/knoblog@v0
+        with:
+          repo: https://github.com/ros-navigation/navigation2
+          config: examples/nav2.yml
+          out: smoke-site
+          max-commits: '25'
+      - run: |
+          echo "entries=${{ steps.kb.outputs.entries }} changes=${{ steps.kb.outputs.changes }} posts_ready=${{ steps.kb.outputs.posts_ready }}"
+          test "${{ steps.kb.outputs.entries }}" -gt 0
+          test -s smoke-site/feed.xml && test -s smoke-site/changes.json && test -s smoke-site/posts.json
