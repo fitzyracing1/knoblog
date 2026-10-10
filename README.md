@@ -55,7 +55,7 @@ reproduces all 45 entries and all 45 post texts of that site exactly).
 ## Quickstart
 
 ```bash
-pip install git+https://github.com/fitzyracing1/knoblog@v0.1.0   # PyPI release pending; Python 3.11+, no dependencies
+pip install knoblog          # Python 3.11+, no dependencies
 knoblog init --preset ros2                               # writes knoblog.yml
 # edit watch.paths in knoblog.yml, then:
 knoblog run --repo https://github.com/ros-navigation/navigation2 --config knoblog.yml --out site
