@@ -19,24 +19,24 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0          # knoblog needs history
       - id: pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
       - id: knoblog
         uses: fitzyracing1/knoblog@v0
         with:
           config: knoblog.yml
           site-url: ${{ steps.pages.outputs.base_url }}/
       - run: echo "${{ steps.knoblog.outputs.entries }} entries, ${{ steps.knoblog.outputs.posts_ready }} post-ready commits"
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: post-text
           path: |
             knoblog-site/posts.json
             knoblog-site/posts.txt
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: knoblog-site
   deploy:
@@ -47,4 +47,4 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5

@@ -117,7 +117,7 @@ but still defined in another is marked as moved, not deleted.
 ## GitHub Action
 
 ```yaml
-- uses: actions/checkout@v4
+- uses: actions/checkout@v7
   with: {fetch-depth: 0}
 - uses: fitzyracing1/knoblog@v0
   with:
