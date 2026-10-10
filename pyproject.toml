@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=68"]
+requires = ["setuptools>=77"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -7,7 +7,8 @@ name = "knoblog"
 version = "0.1.0"
 description = "Plain-English changelogs, feeds and X-ready post text for parameter, gain, threshold, flag and config changes in any git repo."
 readme = "README.md"
-license = { text = "MIT" }
+license = "MIT"
+license-files = ["LICENSE"]
 authors = [{ name = "Joshua Almeida" }]
 requires-python = ">=3.11"
 dependencies = []
@@ -17,7 +18,6 @@ classifiers = [
   "Environment :: Console",
   "Intended Audience :: Developers",
   "Intended Audience :: Science/Research",
-  "License :: OSI Approved :: MIT License",
   "Programming Language :: Python :: 3",
   "Topic :: Scientific/Engineering :: Robotics",
   "Topic :: Software Development :: Documentation",
@@ -36,7 +36,8 @@ Homepage = "https://github.com/fitzyracing1/knoblog"
 Demo = "https://fitzyracing1.github.io/x-algorithm-changelog/"
 
 [tool.setuptools]
-packages = ["knoblog"]
+packages = ["knoblog", "knoblog.presets", "knoblog.static"]
 
 [tool.setuptools.package-data]
-knoblog = ["static/*.css", "presets/*.yml"]
+"knoblog.presets" = ["*.yml"]
+"knoblog.static" = ["*.css"]

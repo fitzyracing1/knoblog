@@ -8,6 +8,12 @@ an Atom feed, a JSON feed of structured changes, and X-ready post text, and it n
 Deterministic first: every value is read from the diff and quoted verbatim. An LLM summary is optional, and
 the post-text gate rejects any number that isn't an analysed value or derived from one.
 
+**Live demos** (rebuilt weekly by this repo's own Action):
+[Nav2 default parameters](https://fitzyracing1.github.io/knoblog/demo/nav2/) ·
+[PX4 controller parameters](https://fitzyracing1.github.io/knoblog/demo/px4/) ·
+[post text](https://fitzyracing1.github.io/knoblog/demo/nav2/posts.html) ·
+[changes.json](https://fitzyracing1.github.io/knoblog/demo/nav2/changes.json)
+
 ![knoblog demo: Nav2 default-parameter changelog](screenshot.png)
 
 ## Who it's for
@@ -49,7 +55,7 @@ reproduces all 45 entries and all 45 post texts of that site exactly).
 ## Quickstart
 
 ```bash
-pip install git+https://github.com/fitzyracing1/knoblog   # (PyPI release pending) Python 3.11+, no dependencies
+pip install git+https://github.com/fitzyracing1/knoblog@v0.1.0   # PyPI release pending; Python 3.11+, no dependencies
 knoblog init --preset ros2                               # writes knoblog.yml
 # edit watch.paths in knoblog.yml, then:
 knoblog run --repo https://github.com/ros-navigation/navigation2 --config knoblog.yml --out site
@@ -121,7 +127,8 @@ but still defined in another is marked as moved, not deleted.
 
 Outputs: `entries`, `changes`, `posts_ready`, `site_dir`. A complete Pages workflow is in
 [`examples/workflows/knoblog-pages.yml`](examples/workflows/knoblog-pages.yml). It builds, deploys to Pages,
-and uploads `posts.json` as an artifact, and posts nothing.
+and uploads `posts.json` as an artifact, and posts nothing. This repo's own
+[`demo.yml`](.github/workflows/demo.yml) uses the Action to build the live demos.
 
 ## Development
 

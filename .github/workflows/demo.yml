@@ -1,0 +1,68 @@
+# Dogfooding: builds the live demos with this repository's own Action (uses: ./) and deploys them to Pages.
+#   https://fitzyracing1.github.io/knoblog/demo/nav2/
+#   https://fitzyracing1.github.io/knoblog/demo/px4/
+name: demo
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: '23 7 * * 1'   # weekly refresh against upstream
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - id: pages
+        uses: actions/configure-pages@v5
+      - name: Nav2 demo (knoblog Action)
+        id: nav2
+        uses: ./
+        with:
+          repo: https://github.com/ros-navigation/navigation2
+          config: examples/nav2.yml
+          out: _site/demo/nav2
+          site-url: ${{ steps.pages.outputs.base_url }}/demo/nav2/
+      - name: PX4 demo (knoblog Action)
+        id: px4
+        uses: ./
+        with:
+          repo: https://github.com/PX4/PX4-Autopilot
+          config: examples/px4.yml
+          out: _site/demo/px4
+          site-url: ${{ steps.pages.outputs.base_url }}/demo/px4/
+      - name: Landing page
+        run: |
+          cp pages/index.html _site/index.html
+          cp knoblog/static/style.css _site/style.css
+          cp screenshot.png _site/screenshot.png
+          touch _site/.nojekyll
+      - name: Summary
+        run: |
+          {
+            echo "### knoblog demos"
+            echo "| demo | entries | value changes | post-ready |"
+            echo "|---|---|---|---|"
+            echo "| Nav2 | ${{ steps.nav2.outputs.entries }} | ${{ steps.nav2.outputs.changes }} | ${{ steps.nav2.outputs.posts_ready }} |"
+            echo "| PX4 | ${{ steps.px4.outputs.entries }} | ${{ steps.px4.outputs.changes }} | ${{ steps.px4.outputs.posts_ready }} |"
+          } >> "$GITHUB_STEP_SUMMARY"
+          test "${{ steps.nav2.outputs.entries }}" -gt 0 && test "${{ steps.px4.outputs.entries }}" -gt 0
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

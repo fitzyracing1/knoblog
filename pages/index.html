@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>knoblog: plain-English release notes for the knobs in your repo</title>
+<meta name="description" content="knoblog turns parameter, gain, threshold, flag and config changes in git history into a changelog site, Atom/JSON feeds and X-ready post text.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="./">knoblog</a>
+  <nav><a href="demo/nav2/">Nav2 demo</a> <a href="demo/px4/">PX4 demo</a> <a href="https://github.com/fitzyracing1/knoblog">GitHub</a></nav>
+</header>
+<main>
+<section class="intro">
+<h1>Plain-English release notes for the knobs in your repo</h1>
+<p>knoblog walks a git history, pulls every parameter, gain, threshold, flag and config default out of each commit,
+and writes down exactly what changed, e.g. <code>inflation_radius 0.55 → 0.7 (27% higher)</code>, with the commit link.
+Output: a static site, Atom, a JSON feed of structured changes, and X-ready post text (never posted).</p>
+<p>Supports ROS 2 parameter YAML, PX4 <code>module.yaml</code> and <code>PARAM_DEFINE_*</code>, ArduPilot <code>AP_Param</code> tables,
+C/C++ <code>#define</code>/<code>constexpr</code>, Python/Rust/JVM constants, and YAML/JSON/TOML.</p>
+</section>
+<article class="entry"><h2><a href="demo/nav2/">Nav2 demo →</a></h2>
+<p>Every change to the default parameter files in <code>nav2_bringup/params</code> (ros-navigation/navigation2), rebuilt weekly by the knoblog GitHub Action.</p></article>
+<article class="entry"><h2><a href="demo/px4/">PX4 demo →</a></h2>
+<p>Multicopter and fixed-wing controller parameter defaults in PX4-Autopilot, including the 2026 move from <code>*_params.c</code> to <code>*_params.yaml</code> shown as moves, not deletions.</p></article>
+<p><img src="screenshot.png" alt="knoblog entry page for a Nav2 commit" style="max-width:100%;border:1px solid var(--line);border-radius:12px"></p>
+<pre>pip install git+https://github.com/fitzyracing1/knoblog
+knoblog init --preset ros2
+knoblog run --repo https://github.com/you/robot --config knoblog.yml --out site</pre>
+<p>GitHub Action: <code>uses: fitzyracing1/knoblog@v0</code>. MIT licensed.</p>
+</main>
+<footer><p>Unofficial demos built from public git history; the upstream diff is the source of truth.</p></footer>
+</body>
+</html>
