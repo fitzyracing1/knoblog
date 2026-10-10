@@ -1,0 +1,67 @@
+name: knoblog
+description: Plain-English changelog site, Atom/JSON feeds and X-ready post text for parameter and config changes. Never posts.
+author: Joshua Almeida
+branding:
+  icon: sliders
+  color: blue
+inputs:
+  repo:
+    description: Git URL or local path to analyse. Defaults to the checked-out workspace.
+    default: ${{ github.workspace }}
+  config:
+    description: Path to knoblog.yml, or a preset name (generic, ros2, px4, ardupilot, x-algorithm).
+    default: knoblog.yml
+  out:
+    description: Output directory for the site and feeds.
+    default: knoblog-site
+  site-url:
+    description: Public URL the site will be served from (used for links in feeds and post text).
+    default: ''
+  max-commits:
+    description: Newest N commits to analyse (0 = use the config value).
+    default: '0'
+  python-version:
+    description: Python version to run knoblog with.
+    default: '3.12'
+  extra-args:
+    description: Extra arguments for `knoblog run` (e.g. --no-llm --since 2026-01-01).
+    default: ''
+outputs:
+  entries:
+    description: Number of changelog entries written.
+    value: ${{ steps.run.outputs.entries }}
+  changes:
+    description: Number of value changes found.
+    value: ${{ steps.run.outputs.changes }}
+  posts_ready:
+    description: Number of commits with ready-to-post X text (in posts.json; nothing is posted).
+    value: ${{ steps.run.outputs.posts_ready }}
+  site_dir:
+    description: Directory containing index.html, feed.xml, feed.json, changes.json, posts.json and posts.txt.
+    value: ${{ steps.run.outputs.site_dir }}
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-python@v5
+      with:
+        python-version: ${{ inputs.python-version }}
+    - name: Install knoblog
+      shell: bash
+      run: python -m pip install --quiet "${{ github.action_path }}"
+    - name: Run knoblog
+      id: run
+      shell: bash
+      env:
+        KB_REPO: ${{ inputs.repo }}
+        KB_CONFIG: ${{ inputs.config }}
+        KB_OUT: ${{ inputs.out }}
+        KB_SITE_URL: ${{ inputs.site-url }}
+        KB_MAX: ${{ inputs.max-commits }}
+        KB_EXTRA: ${{ inputs.extra-args }}
+      run: |
+        args=(run --repo "$KB_REPO" --config "$KB_CONFIG" --out "$KB_OUT" --github-output)
+        [ -n "$KB_SITE_URL" ] && args+=(--site-url "$KB_SITE_URL")
+        [ "$KB_MAX" != "0" ] && args+=(--max-commits "$KB_MAX")
+        # shellcheck disable=SC2206
+        extra=($KB_EXTRA)
+        knoblog "${args[@]}" "${extra[@]}"

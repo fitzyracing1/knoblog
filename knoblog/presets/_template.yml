@@ -1,0 +1,42 @@
+# knoblog configuration. Run: knoblog run --repo <git url or path> --config knoblog.yml
+extends: generic          # built-in presets: generic, ros2, px4, ardupilot, x-algorithm
+
+# name: My Robot          # used in post headers ("My Robot update (Oct 9): ...")
+# repo: https://github.com/you/your-robot
+
+history:
+  max_commits: 300        # newest N commits that touch the watched paths
+  # since: 2026-01-01
+
+watch:
+  paths: ['config/**/*.yaml', 'params/**/*.yaml', 'src/**/*.hpp']
+  exclude: ['**/test/**']
+
+# Extractors: auto picks by extension/content. Or list them explicitly:
+#   rust_param, rust_const, python_const, jvm_const, c_const, px4_param_define, px4_module_yaml,
+#   ardupilot, yaml, ros2_yaml, json, toml
+extractors:
+  - use: auto
+
+noise:
+  line_patterns: []       # regexes; lines matching these never count as a change (e.g. generated timestamps)
+  ignore_paths: []
+
+highlight:                # names that matter most; they lead summaries and posts
+  - {pattern: '(^|[._/])(k[pid]|.*_gain)$', label: gain, noun: gain}
+
+summaries:
+  notes_dir: notes        # notes/<short sha>.md overrides the automatic summary
+  llm: false              # true = use XAI_API_KEY / OPENAI_API_KEY for un-noted commits (cached in llm_cache_dir)
+  llm_cache_dir: .knoblog-llm
+
+site:
+  # title: My Robot parameter changelog
+  url: ''                 # public URL (enables entry links in feeds and posts)
+  disclaimer: ''
+
+post:
+  enabled: true
+  names: raw              # raw = exact parameter names; human = "click weight" style
+  min_change_pct: 0       # changes smaller than this never lead a post
+  disclaimer: 'Values are repo defaults.'

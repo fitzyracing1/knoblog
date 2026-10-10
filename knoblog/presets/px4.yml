@@ -1,0 +1,15 @@
+# px4: PX4 Autopilot parameters (module.yaml definitions and legacy PARAM_DEFINE_* in *_params.c), plus airframe/config YAML.
+watch:
+  paths: ['src/**/module.yaml', 'src/**/*params*.c', 'src/**/*params*.yaml']
+  exclude: ['**/test/**', '**/tests/**']
+extractors:
+  - use: px4_module_yaml
+    paths: ['**/*.yaml']
+  - use: px4_param_define
+    paths: ['**/*.c']
+post:
+  names: raw
+  disclaimer: 'Values are PX4 firmware defaults in the repo.'
+highlight:
+  - {pattern: '_(P|I|D|FF|K)$|_GAIN|_K_|^MC_.*_(P|I|D)$', label: gain, noun: gain}
+  - {pattern: '_(MAX|MIN|LIM|THR|TH|THRESH)\b|_MAX_|_LIM_', label: limit, noun: ''}

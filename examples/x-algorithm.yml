@@ -1,0 +1,8 @@
+# Rebuilds https://fitzyracing1.github.io/x-algorithm-changelog/ with knoblog.
+#   knoblog run --config examples/x-algorithm.yml --out site
+extends: x-algorithm
+summaries:
+  notes_dir: ../../x-algorithm-changelog/notes   # hand-written notes, relative to this file
+site:
+  url: https://fitzyracing1.github.io/x-algorithm-changelog/
+  project_url: https://github.com/fitzyracing1/x-algorithm-changelog

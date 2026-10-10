@@ -1,0 +1,12 @@
+# ArduPilot: attitude/position controller AP_Param defaults.
+#   knoblog run --config examples/ardupilot.yml --out site-ardupilot
+extends: ardupilot
+name: ArduPilot
+repo: https://github.com/ArduPilot/ardupilot
+branch: master
+history:
+  max_commits: 60
+watch:
+  paths: ['libraries/AC_AttitudeControl/*.cpp', 'libraries/AC_AttitudeControl/*.h', 'libraries/AC_WPNav/*.cpp', 'libraries/AC_WPNav/*.h']
+site:
+  title: ArduPilot controller-parameter changelog (demo)

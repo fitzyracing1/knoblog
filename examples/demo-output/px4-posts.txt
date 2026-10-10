@@ -1,0 +1,129 @@
+=== 2026-07-03 495803a (1 post) ===
+--- 1/1 [122/280] ---
+PX4 update (Jul 3): new MPC_Z_ERR_MAX = 1.0
+
+Commit: https://github.com/PX4/PX4-Autopilot/commit/495803a1dbbabdf414dd53ac6c58694d159d782f
+Values are PX4 firmware defaults in the repo.
+
+=== 2026-06-26 2a0e048 (1 post) ===
+--- 1/1 [197/280] ---
+PX4 update (Jun 26): new MC_REF_FF_MAX = 100.0
+- new MC_REF_W_N = 50.0
+- new MC_REF_FF gain added at 0 (no effect yet)
+
+Commit: https://github.com/PX4/PX4-Autopilot/commit/2a0e0481713ca44802d74e9d3ba4a92f384d138f
+Values are PX4 firmware defaults in the repo.
+
+=== 2026-04-28 d84f6c3 (1 post) ===
+--- 1/1 [142/280] ---
+PX4 update (Apr 28): FW_T_HRATE_FF gain 0.3 → 0.5 (67% higher)
+
+Commit: https://github.com/PX4/PX4-Autopilot/commit/d84f6c324aec68ad3468a708036fc4cad7f298a5
+Values are PX4 firmware defaults in the repo.
+
+=== 2025-10-23 1c821cf (1 post) ===
+--- 1/1 [146/280] ---
+PX4 update (Oct 23): MPC_LAND_RADIUS 1000.f → -1.0f (sign flipped)
+
+Commit: https://github.com/PX4/PX4-Autopilot/commit/1c821cf83dcd688a185f00205700212af191e8b5
+Values are PX4 firmware defaults in the repo.
+
+=== 2025-10-02 614e15d (1 post) ===
+--- 1/1 [163/280] ---
+PX4 update (Oct 2): FW_AT_SYSID_TYPE 0 → 1
+- FW_AT_SYSID_F1 20.f → 10.f (2x lower)
+
+Commit: https://github.com/PX4/PX4-Autopilot/commit/614e15d5f40af1d835096fcf7643570b6ec5bee5
+Values are PX4 firmware defaults in the repo.
+
+=== 2025-07-25 3be0cb0 (1 post) ===
+--- 1/1 [197/280] ---
+PX4 update (Jul 25): new MC_NN_MAX_RPM = 22000
+- new MC_NN_EN = 1
+- new MC_NN_MANL_CTRL = 1
+- new MC_NN_MIN_RPM = 1000
+
+Commit: https://github.com/PX4/PX4-Autopilot/commit/3be0cb077c3a97d6fe452c640b33f54562c3e4ec
+Values are PX4 firmware defaults in the repo.
+
+=== 2025-06-05 c7ef125 (1 post) ===
+--- 1/1 [181/280] ---
+PX4 update (Jun 5): MC_PITCH_P gain 6.5f → 4.0f (38% lower)
+- MC_ROLL_P gain 6.5f → 4.0f (38% lower)
+
+Commit: https://github.com/PX4/PX4-Autopilot/commit/c7ef12545cde8226d57f2462cc4a3ba93424b650
+Values are PX4 firmware defaults in the repo.
+
+=== 2025-05-26 779a55c (1 post) ===
+--- 1/1 [134/280] ---
+PX4 update (May 26): NPFG_GSP_MAX_TK removed (was 5.0f)
+
+Commit: https://github.com/PX4/PX4-Autopilot/commit/779a55c6dc272cd11ad3df3f8bd20425ecef30f8
+Values are PX4 firmware defaults in the repo.
+
+=== 2025-05-21 30df381 (1 post) ===
+--- 1/1 [185/280] ---
+PX4 update (May 21): MPC_YAWRAUTO_MAX 45.f → 60.f (33% higher)
+- MPC_YAWRAUTO_ACC 60.f → 20.f (3x lower)
+
+Commit: https://github.com/PX4/PX4-Autopilot/commit/30df381f0ee22c474fea760349459789bbab9577
+Values are PX4 firmware defaults in the repo.
+
+=== 2024-07-29 9257744 (1 post) ===
+--- 1/1 [139/280] ---
+PX4 update (Jul 29): FW_T_SPD_STD 0.2f → 0.07f (2.9x lower)
+
+Commit: https://github.com/PX4/PX4-Autopilot/commit/9257744da36945725910439f6a99bc4cad4d8296
+Values are PX4 firmware defaults in the repo.
+
+=== 2024-01-12 a38abdb (1 post) ===
+--- 1/1 [200/280] ---
+PX4 update (Jan 12): FW_T_I_GAIN_THR gain removed (was 0.05f)
+- new FW_T_THR_DAMPING = 0.05f
+- new FW_T_THR_INTEG = 0.02f
+
+Commit: https://github.com/PX4/PX4-Autopilot/commit/a38abdbf9d5590a8572651ab1d0baecccd2cb7bb
+Values are PX4 firmware defaults in the repo.
+
+=== 2023-11-30 d1e8bdb (1 post) ===
+--- 1/1 [165/280] ---
+PX4 update (Nov 30): MPC_YAWAAUTO_MAX removed (was 60.f)
+- new MPC_YAWRAUTO_ACC = 60.f
+
+Commit: https://github.com/PX4/PX4-Autopilot/commit/d1e8bdbd1646ab2beb9ee569bd5921346109454c
+Values are PX4 firmware defaults in the repo.
+
+=== 2023-11-30 4b920a6 (1 post) ===
+--- 1/1 [127/280] ---
+PX4 update (Nov 30): new MPC_YAWAAUTO_MAX = 60.f
+
+Commit: https://github.com/PX4/PX4-Autopilot/commit/4b920a662855bdb22d4101947425285050f8a305
+Values are PX4 firmware defaults in the repo.
+
+=== 2023-11-21 dd2322d (1 post) ===
+--- 1/1 [239/280] ---
+PX4 update (Nov 21): FW_T_CLMB_MAX removed (was 5.0f)
+- FW_T_SINK_MIN removed (was 2.0f)
+- FW_AIRSPD_MAX removed (was 20.0f)
+- FW_AIRSPD_MIN removed (was 10.0f)
+
+Commit: https://github.com/PX4/PX4-Autopilot/commit/dd2322d62200afcbf7732f50ecb2209051f9ba1d
+Values are PX4 firmware defaults in the repo.
+
+=== 2023-11-07 4dda99c (1 post) ===
+--- 1/1 [118/280] ---
+PX4 update (Nov 7): MPC_ALT_MODE 0 → 2
+
+Commit: https://github.com/PX4/PX4-Autopilot/commit/4dda99c80b8a7cf40445c9f95dcca357434f796b
+Values are PX4 firmware defaults in the repo.
+
+=== 2023-09-20 be56f74 (2 posts) ===
+--- 1/2 [181/280] ---
+PX4 update (Sep 20): MC_ACRO_P_MAX 720.0f → 100.f (7.2x lower)
+- MC_ACRO_R_MAX 720.0f → 100.f (7.2x lower)
+- MC_ACRO_Y_MAX 540.0f → 100.f (5.4x lower)
+- MC_ACRO_EXPO 0.69f → 0.f
+--- 2/2 [100/280] ---
++3 more in the commit.
+Commit: https://github.com/PX4/PX4-Autopilot/commit/be56f74c1d0a03809fa370804f6dc114a4e4223b
+Values are PX4 firmware defaults in the repo.

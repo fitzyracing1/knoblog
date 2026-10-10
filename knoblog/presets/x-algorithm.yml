@@ -1,0 +1,43 @@
+# x-algorithm: xai-org/x-algorithm (X "For You" ranking). Reproduces the fitzyracing1/x-algorithm-changelog analysis.
+name: X algorithm
+repo: https://github.com/xai-org/x-algorithm
+history:
+  max_commits: 1000
+  limit_log_to_watched_paths: false
+extractors:
+  - {use: rust_param, paths: ['**/*.rs']}
+  - {use: rust_const, paths: ['**/*.rs']}
+  - {use: python_const, paths: ['**/*.py']}
+  - {use: jvm_const, paths: ['**/*.scala']}
+noise:
+  line_patterns: ['last sync \d{4}-\d{2}-\d{2}T[\d:]+Z']
+components:
+  rules:
+    - {kind: Filter, pattern: '(^|/)filters?/(?!mod\.rs$|__init__\.py$)[^/]+$|[A-Za-z0-9]*_filter\.(rs|py)$|[A-Za-z0-9]*Filter\.(scala|java)$'}
+    - {kind: Scorer, pattern: '(^|/)scorers?/(?!mod\.rs$|__init__\.py$)[^/]+$|_scorer\.(rs|py)$|Scorer\.(scala|java)$'}
+    - {kind: Candidate source, pattern: '(^|/)sources/(?!mod\.rs$|__init__\.py$)[^/]+\.(rs|py|scala|java)$|CandidateSource\.(scala|java)$'}
+    - {kind: Candidate hydrator, pattern: '(^|/)(candidate|query)_hydrators/(?!mod\.rs$)[^/]+$|_hydrator\.rs$'}
+    - {kind: Selector, pattern: '(^|/)selectors/(?!mod\.rs$)[^/]+$'}
+    - {kind: Side effect, pattern: '(^|/)side_effects/(?!mod\.rs$)[^/]+$'}
+    - {kind: Ads blender, pattern: 'home-mixer/ads/[^/]*blender[^/]*\.rs$'}
+    - {kind: Botmaker rule, pattern: 'botmaker-rules/.*\.bot$'}
+    - {kind: Visibility rule, pattern: 'visibility-filtering/.*/rules?/[^/]+\.(rs|scala|java|py)$'}
+highlight:
+  - {pattern: 'Weight$|WeightBoost', label: ranking weight, noun: weight, negative_noun: penalty, strip: 'Weight$|^Cont(?=[A-Z])', penalty_if_negative: true}
+tweaks: true
+summaries:
+  home_files: ['home-mixer/params/param.rs']
+  names: human
+site:
+  title: x-algorithm changelog (unofficial)
+  tagline: Plain-English developer notes for every update to X's open-source recommendation algorithm.
+  disclaimer: 'Unofficial, community-maintained. Not affiliated with X Corp. or xAI. The upstream diff is the source of truth.'
+post:
+  names: human
+  new_values: false
+  header: 'X algorithm update ({date}): '
+  disclaimer: 'Unofficial tracker; values are repo defaults, not confirmed live settings.'
+  component_kinds: [Candidate source, Filter, Scorer]
+  component_paths: ['home-mixer/**', 'thunder/**', 'vm-ranker/**', 'xai-value-model/**', 'candidate-pipeline/**']
+  const_trigger_paths: ['home-mixer/**', 'thunder/**', 'vm-ranker/**', 'xai-value-model/**', 'candidate-pipeline/**']
+  const_trigger_names: 'THRESHOLD|FOLLOWER'

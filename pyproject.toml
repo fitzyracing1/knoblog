@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "knoblog"
+version = "0.1.0"
+description = "Plain-English changelogs, feeds and X-ready post text for parameter, gain, threshold, flag and config changes in any git repo."
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "Joshua Almeida" }]
+requires-python = ">=3.11"
+dependencies = []
+keywords = ["changelog", "parameters", "ros2", "px4", "ardupilot", "robotics", "config", "release-notes", "atom", "jsonfeed", "x", "twitter"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Environment :: Console",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Topic :: Scientific/Engineering :: Robotics",
+  "Topic :: Software Development :: Documentation",
+  "Topic :: Software Development :: Version Control :: Git",
+]
+
+[project.optional-dependencies]
+yaml = ["PyYAML>=6"]   # optional: faster config parsing; parameter files always use the built-in raw-literal parser
+test = ["pytest>=7"]
+
+[project.scripts]
+knoblog = "knoblog.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/fitzyracing1/knoblog"
+Demo = "https://fitzyracing1.github.io/x-algorithm-changelog/"
+
+[tool.setuptools]
+packages = ["knoblog"]
+
+[tool.setuptools.package-data]
+knoblog = ["static/*.css", "presets/*.yml"]

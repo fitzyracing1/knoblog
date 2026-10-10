@@ -1,0 +1,200 @@
+=== 2026-08-15 af4233c (2 posts) ===
+--- 1/2 [251/280] ---
+Nav2 update (Aug 15): velocity_smoother/max_accel[0] 2.5 → 3.0 (20% higher)
+- velocity_smoother/max_decel[0] -2.5 → -3.0 (20% lower)
+- velocity_smoother/max_accel[2] 3.2 → 3.5 (9.4% higher)
+- velocity_smoother/max_decel[2] -3.2 → -3.5 (9.4% lower)
+--- 2/2 [79/280] ---
+Commit: https://github.com/ros-navigation/navigation2/commit/af4233c67cafffe7e40c45197c833116fcbb8c1c
+Values are repo defaults from the params files.
+
+=== 2025-12-29 f3406e2 (2 posts) ===
+--- 1/2 [223/280] ---
+Nav2 update (Dec 29): new controller_server/PathHandler/inversion_xy_tolerance = 0.2
+- new controller_server/PathHandler/inversion_yaw_tolerance = 0.4
+- new controller_server/general_goal_checker/path_length_tolerance = 1.0
+--- 2/2 [149/280] ---
+- controller_server/FollowPath/transform_tolerance removed (was 0.1)
+
+Commit: https://github.com/ros-navigation/navigation2/commit/f3406e246cda1e7c28052409a098313fbc1761fe
+Values are repo defaults from the params files.
+
+=== 2025-09-26 4e5273a (1 post) ===
+--- 1/1 [153/280] ---
+Nav2 update (Sep 26): new flag collision_monitor/enabled (ON by default)
+
+Commit: https://github.com/ros-navigation/navigation2/commit/4e5273a2dd399f55db2c54e3d17e2cbb59bc3bcd
+Values are repo defaults from the params files.
+
+=== 2025-06-12 792bcac (1 post) ===
+--- 1/1 [155/280] ---
+Nav2 update (Jun 12): new flag route_server/smooth_corners (ON by default)
+
+Commit: https://github.com/ros-navigation/navigation2/commit/792bcac93e44258a97f3d38cdf6a3a8f5714d4b6
+Values are repo defaults from the params files.
+
+=== 2025-06-01 eb2235a (2 posts) ===
+--- 1/2 [280/280] ---
+Nav2 update (Jun 1): new flag global_costmap/global_costmap/keepout_filter/override_lethal_cost (ON by default)
+- new flag local_costmap/local_costmap/keepout_filter/override_lethal_cost (ON by default)
+- new global_costmap/global_costmap/keepout_filter/lethal_override_cost = 200
+--- 2/2 [156/280] ---
+- new local_costmap/local_costmap/keepout_filter/lethal_override_cost = 200
+
+Commit: https://github.com/ros-navigation/navigation2/commit/eb2235a86e3599d295060b1904e1f635f93ae9b7
+Values are repo defaults from the params files.
+
+=== 2025-05-20 cd7a0b7 (1 post) ===
+--- 1/1 [159/280] ---
+Nav2 update (May 20): new flag loopback_simulator/scan_use_inf (ON by default)
+
+Commit: https://github.com/ros-navigation/navigation2/commit/cd7a0b75a0b9a6ac19ddf0de27d369f28dddef9c
+Values are repo defaults from the params files.
+
+=== 2025-05-15 df12f68 (1 post) ===
+--- 1/1 [178/280] ---
+Nav2 update (May 15): new flag global_costmap/global_costmap/speed_filter/enabled (ON by default)
+
+Commit: https://github.com/ros-navigation/navigation2/commit/df12f68464418582c7fad7d1790fc0480c8d1185
+Values are repo defaults from the params files.
+
+=== 2025-05-09 5f34bc3 (1 post) ===
+--- 1/1 [257/280] ---
+Nav2 update (May 9): new flag global_costmap/global_costmap/keepout_filter/enabled (ON by default)
+- new flag local_costmap/local_costmap/keepout_filter/enabled (ON by default)
+
+Commit: https://github.com/ros-navigation/navigation2/commit/5f34bc362b65a6d4f3bd08f21c0531f6f1468b06
+Values are repo defaults from the params files.
+
+=== 2025-04-28 b6a5387 (2 posts) ===
+--- 1/2 [230/280] ---
+Nav2 update (Apr 28): new smoother_server/route_smoother/tolerance = 1.0e-10
+- new flag smoother_server/route_smoother/do_refinement (ON by default)
+- new flag smoother_server/simple_smoother/enforce_path_inversion (ON by default)
+--- 2/2 [162/280] ---
+- new flag smoother_server/route_smoother/enforce_path_inversion (off by default)
+
+Commit: https://github.com/ros-navigation/navigation2/commit/b6a5387d6823de6eb8008da995a72086e8ace1e5
+Values are repo defaults from the params files.
+
+=== 2025-04-05 c3d41d6 (1 post) ===
+--- 1/1 [182/280] ---
+Nav2 update (Apr 5): new flag controller_server/FollowPath/publish_optimal_trajectory (ON by default)
+
+Commit: https://github.com/ros-navigation/navigation2/commit/c3d41d6a51618a11486135efd618f2829baa36bf
+Values are repo defaults from the params files.
+
+=== 2025-04-01 e90717d (1 post) ===
+--- 1/1 [257/280] ---
+Nav2 update (Apr 1): controller_server/FollowPath/CostCritic/consider_footprint: switched OFF by default
+- new controller_server/FollowPath/CostCritic/near_collision_cost = 253
+
+Commit: https://github.com/ros-navigation/navigation2/commit/e90717de5d2895d288bb06de7373c2c7553af4f1
+Values are repo defaults from the params files.
+
+=== 2024-11-21 90a6c8d (2 posts) ===
+--- 1/2 [271/280] ---
+Nav2 update (Nov 21): new docking_server/controller/dock_collision_threshold = 0.3
+- new docking_server/controller/transform_tolerance = 0.1
+- new flag docking_server/controller/use_collision_detection (ON by default)
+- new docking_server/controller/projection_time = 5.0
+--- 2/2 [79/280] ---
+Commit: https://github.com/ros-navigation/navigation2/commit/90a6c8d80096469a22e1a56e5447d58fb8e66ef6
+Values are repo defaults from the params files.
+
+=== 2024-06-11 7737a2f (2 posts) ===
+--- 1/2 [243/280] ---
+Nav2 update (Jun 11): new docking_server/dock_prestaging_tolerance = 0.5
+- new docking_server/simple_charging_dock/docking_threshold = 0.05
+- new docking_server/undock_angular_tolerance = 0.1
+- new docking_server/undock_linear_tolerance = 0.05
+--- 2/2 [102/280] ---
++1 more in the commit.
+Commit: https://github.com/ros-navigation/navigation2/commit/7737a2fafa27c18efef4689582799bdce6aeb1df
+Values are repo defaults from the params files.
+
+=== 2024-02-01 b970a84 (1 post) ===
+--- 1/1 [228/280] ---
+Nav2 update (Feb 1): planner_server/GridBased/tolerance 0.25 → 0.5 (2x higher)
+- planner_server/GridBased/smoother/tolerance removed (was 1.0e-10)
+
+Commit: https://github.com/ros-navigation/navigation2/commit/b970a8428fa996f582a1d9c30f816bba97704527
+Values are repo defaults from the params files.
+
+=== 2024-01-10 5f7f83a (2 posts) ===
+--- 1/2 [276/280] ---
+Nav2 update (Jan 10): planner_server/GridBased/tolerance 0.5 → 0.25 (2x lower)
+- new planner_server/GridBased/smoother/tolerance = 1.0e-10
+- new flag planner_server/GridBased/debug_visualizations (ON by default)
+- new flag planner_server/GridBased/smooth_path (ON by default)
+--- 2/2 [102/280] ---
++1 more in the commit.
+Commit: https://github.com/ros-navigation/navigation2/commit/5f7f83a12168b74d64c3f054de09f2eb1a23adc0
+Values are repo defaults from the params files.
+
+=== 2023-12-13 04c6ca5 (2 posts) ===
+--- 1/2 [198/280] ---
+Nav2 update (Dec 13): global_costmap/global_costmap/inflation_layer/inflation_radius 0.55 → 0.7 (27% higher)
+- local_costmap/local_costmap/inflation_layer/inflation_radius 0.55 → 0.70 (27% higher)
+--- 2/2 [163/280] ---
+- collision_monitor/FootprintApproach/time_before_collision 2.0 → 1.2 (40% lower)
+
+Commit: https://github.com/ros-navigation/navigation2/commit/04c6ca5eed4529757fcb9d4ca48a50e2a7ce023a
+Values are repo defaults from the params files.
+
+=== 2022-06-13 6f31d59 (1 post) ===
+--- 1/1 [216/280] ---
+Nav2 update (Jun 13): new flag velocity_smoother/use_sim_time (ON by default)
+- new flag waypoint_follower/use_sim_time (ON by default)
+
+Commit: https://github.com/ros-navigation/navigation2/commit/6f31d59e6d43f845b70bd1b953fec21f6e792c0d
+Values are repo defaults from the params files.
+
+=== 2022-06-06 f00d468 (1 post) ===
+--- 1/1 [269/280] ---
+Nav2 update (Jun 6): new flag bt_navigator_navigate_through_poses_rclcpp_node/use_sim_time (ON by default)
+- new flag bt_navigator_navigate_to_pose_rclcpp_node/use_sim_time (ON by default)
+
+Commit: https://github.com/ros-navigation/navigation2/commit/f00d468eb10952ada56f4d6e2ddd16815cc2a3ca
+Values are repo defaults from the params files.
+
+=== 2022-04-04 4234a6e (1 post) ===
+--- 1/1 [261/280] ---
+Nav2 update (Apr 4): new behavior_server/transform_tolerance = 0.1
+- recoveries_server/transform_tolerance removed (was 0.1)
+- new flag behavior_server/use_sim_time (ON by default)
+
+Commit: https://github.com/ros-navigation/navigation2/commit/4234a6ea27de2094dde98a5f928522d72b139227
+Values are repo defaults from the params files.
+
+=== 2022-03-30 b48ba73 (1 post) ===
+--- 1/1 [231/280] ---
+Nav2 update (Mar 30): new smoother_server/simple_smoother/tolerance = 1.0e-10
+- new flag smoother_server/simple_smoother/do_refinement (ON by default)
+
+Commit: https://github.com/ros-navigation/navigation2/commit/b48ba733fb45106341d974f4147497975f412c8c
+Values are repo defaults from the params files.
+
+=== 2021-11-29 fee433f (1 post) ===
+--- 1/1 [150/280] ---
+Nav2 update (Nov 29): new recoveries_server/transform_tolerance = 0.1
+
+Commit: https://github.com/ros-navigation/navigation2/commit/fee433ff76b1fe2997043bec16b81568fbead49e
+Values are repo defaults from the params files.
+
+=== 2021-11-18 7befc49 (1 post) ===
+--- 1/1 [156/280] ---
+Nav2 update (Nov 18): new flag smoother_server/use_sim_time (ON by default)
+
+Commit: https://github.com/ros-navigation/navigation2/commit/7befc4975d3df4e252677a7a2b7c1d6c783fbd20
+Values are repo defaults from the params files.
+
+=== 2019-09-25 9c06186 (2 posts) ===
+--- 1/2 [276/280] ---
+Nav2 update (Sep 25): new flag bt_navigator_rclcpp_node/use_sim_time (ON by default)
+- new flag controller_server_rclcpp_node/use_sim_time (ON by default)
+- new flag planner_server/use_sim_time (ON by default)
+- new flag planner_server_rclcpp_node/use_sim_time (ON by default)
+--- 2/2 [79/280] ---
+Commit: https://github.com/ros-navigation/navigation2/commit/9c061867064c1ff45167d5456d9297d8985905a9
+Values are repo defaults from the params files.

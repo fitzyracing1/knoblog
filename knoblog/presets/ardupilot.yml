@@ -1,0 +1,12 @@
+# ardupilot: AP_Param tables (AP_GROUPINFO defaults per library class) and vehicle GSCALAR/ASCALAR defaults.
+watch:
+  paths: ['libraries/**/*.cpp', 'libraries/**/*.h', 'ArduCopter/**/*.cpp', 'ArduPlane/**/*.cpp', 'Rover/**/*.cpp', 'ArduSub/**/*.cpp', 'AntennaTracker/**/*.cpp', 'Blimp/**/*.cpp']
+  exclude: ['**/examples/**', '**/tests/**', 'libraries/SITL/**']
+extractors:
+  - use: ardupilot
+    options: {}
+post:
+  names: raw
+  disclaimer: 'Values are ArduPilot firmware defaults in the repo.'
+highlight:
+  - {pattern: '(_P|_I|_D|_FF|_IMAX|_KP|_KI|_KD|GAIN)$', label: gain, noun: gain}

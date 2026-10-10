@@ -1,0 +1,13 @@
+# PX4 Autopilot: multicopter controller parameter defaults (module.yaml + legacy *_params.c).
+#   knoblog run --config examples/px4.yml --out site-px4
+extends: px4
+name: PX4
+repo: https://github.com/PX4/PX4-Autopilot
+branch: main
+history:
+  max_commits: 80
+watch:
+  paths: ['src/modules/mc_*control/**/module.yaml', 'src/modules/mc_*control/**/*params*.c', 'src/modules/mc_*control/**/*params*.yaml', 'src/modules/fw_*control/**/module.yaml', 'src/modules/fw_*control/**/*params*.c', 'src/modules/fw_*control/**/*params*.yaml']
+site:
+  title: PX4 controller-parameter changelog (demo)
+  tagline: Every change to PX4 multicopter and fixed-wing controller parameter defaults, with old → new values.

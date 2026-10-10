@@ -1,0 +1,6 @@
+# generic: every supported file type, auto-detected extractors.
+watch:
+  paths: ['**']
+  exclude: ['**/test/**', '**/tests/**', '**/node_modules/**', '**/vendor/**', '**/third_party/**', '**/*.lock', '**/package-lock.json']
+extractors:
+  - use: auto

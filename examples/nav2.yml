@@ -1,0 +1,14 @@
+# Nav2 (ROS 2 navigation stack): default parameter files shipped with nav2_bringup.
+#   knoblog run --config examples/nav2.yml --out site-nav2
+extends: ros2
+name: Nav2
+repo: https://github.com/ros-navigation/navigation2
+branch: main
+history:
+  max_commits: 120
+watch:
+  paths: ['nav2_bringup/params/*.yaml']
+  exclude: []
+site:
+  title: Nav2 default-parameter changelog (demo)
+  tagline: Every change to the default parameter files in nav2_bringup, with old → new values.

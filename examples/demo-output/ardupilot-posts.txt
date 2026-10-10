@@ -1,0 +1,6 @@
+=== 2026-09-30 4b83b49 (1 post) ===
+--- 1/1 [136/280] ---
+ArduPilot update (Sep 30): AC_Loiter/OPTIONS 1 → 0
+
+Commit: https://github.com/ArduPilot/ardupilot/commit/4b83b49c240dd3ff898f026692f8eb1b5ab35b18
+Values are ArduPilot firmware defaults in the repo.

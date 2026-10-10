@@ -1,0 +1,50 @@
+# Copy to .github/workflows/knoblog.yml in your robot / config repo.
+# Builds the changelog on every push to main (and daily), deploys it to GitHub Pages,
+# and uploads posts.json/posts.txt as an artifact. Nothing is posted anywhere.
+name: knoblog
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: '17 6 * * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: knoblog-pages
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0          # knoblog needs history
+      - id: pages
+        uses: actions/configure-pages@v5
+      - id: knoblog
+        uses: fitzyracing1/knoblog@v0
+        with:
+          config: knoblog.yml
+          site-url: ${{ steps.pages.outputs.base_url }}/
+      - run: echo "${{ steps.knoblog.outputs.entries }} entries, ${{ steps.knoblog.outputs.posts_ready }} post-ready commits"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: post-text
+          path: |
+            knoblog-site/posts.json
+            knoblog-site/posts.txt
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: knoblog-site
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

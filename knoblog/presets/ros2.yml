@@ -1,0 +1,13 @@
+# ros2: ROS 2 parameter files (anything with a ros__parameters block), launch-time YAML, plus C++/Python constants.
+watch:
+  paths: ['**/*.yaml', '**/*.yml', '**/*.hpp', '**/*.h', '**/*.cpp', '**/*.py']
+  exclude: ['**/test/**', '**/tests/**', '.github/**', '**/.github/**', '**/codecov.yml', '**/.pre-commit-config.yaml']
+extractors:
+  - use: auto
+post:
+  names: raw
+  disclaimer: 'Values are repo defaults from the params files.'
+highlight:
+  - {pattern: '(^|[._/])(k[pid]|[pid]_gain|gains?|.*_gain)$', label: gain, noun: gain}
+  - {pattern: '(max|min)_(vel|speed|accel|decel|velocity)|(vel|speed|accel)_(max|min|limit)', label: velocity/acceleration limit, noun: ''}
+  - {pattern: '(tolerance|threshold|inflation_radius|robot_radius|footprint_padding|cost_scaling_factor)$', label: threshold, noun: ''}
