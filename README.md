@@ -143,3 +143,8 @@ every PX4 `module.yaml`/`*_params.yaml` default.
 ## License
 
 MIT © Joshua Almeida
+
+## Documentation
+
+- In-repo docs: [docs/](docs/index.md)
+- Wiki: [https://github.com/fitzyracing1/knoblog/wiki](https://github.com/fitzyracing1/knoblog/wiki)
