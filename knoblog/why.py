@@ -30,7 +30,7 @@ def pr_from_message(subject: str, body: str = "") -> int | None:
         m = rx.search(subject or "")
         if m:
             return int(m.group(1))
-    m = re.search(r"(?mi)^\s*(?:pull request|pr)[: ]+#?(\d+)\s*$", body or "")
+    m = re.search(r"(?mi)^\s*(?:pull request|pr)(?: resolved)?[: ]+(?:#|https://github\.com/[^/\s]+/[^/\s]+/pull/)?(\d+)\s*$", body or "")
     return int(m.group(1)) if m else None
 
 

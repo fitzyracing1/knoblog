@@ -7,6 +7,7 @@ class WhyTests(unittest.TestCase):
         self.assertEqual(W.pr_from_message("Fix costmap inflation (#4821)"), 4821)
         self.assertEqual(W.pr_from_message("Merge pull request #12 from a/b"), 12)
         self.assertIsNone(W.pr_from_message("update params"))
+        self.assertEqual(W.pr_from_message("[inductor] tweak", "x\n\nPull Request resolved: https://github.com/pytorch/pytorch/pull/161234\nApproved by: y"), 161234)
 
     def test_slug(self):
         self.assertEqual(W.github_slug("https://github.com/PX4/PX4-Autopilot"), "PX4/PX4-Autopilot")
