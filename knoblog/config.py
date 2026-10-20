@@ -24,6 +24,7 @@ DEFAULTS: dict = {
     "highlight": [],                  # [{pattern, label, penalty_if_negative}]
     "tweaks": False,                  # diff-based literal tweaks (- / + line pairs differing only in numbers)
     "lfs": True,
+    "why": {"pr_lookup": False, "max_api_calls": 200},  # commit message + PR link per entry (see knoblog/why.py)
     "track_moves": True,              # git-grep removed names to tell "moved to another file" from "deleted"
     "summaries": {"names": "raw", "home_files": [], "notes_dir": None, "llm": False, "llm_cache_dir": None, "llm_limit": 10},
     "site": {"title": None, "tagline": "Plain-English notes for every parameter, threshold, flag and config change.",

@@ -184,6 +184,12 @@ class Site:
     def detail(self, e: dict, prev: dict | None, nxt: dict | None, post: dict | None) -> str:
         code = lambda s: f"<code>{esc(s)}</code>" if s is not None else "—"
         parts = [self.card(e, prefix="")]
+        w = e.get("why")
+        if w:
+            pr = (f" · <a href='{esc(w['pr_url'])}'>PR #{w['pr_number']}</a>" if w.get("pr_url") else
+                  (f" · PR #{w['pr_number']}" if w.get("pr_number") else ""))
+            parts.append(f"<h3>Why it changed</h3><p><strong>{esc(w['subject'])}</strong>{pr}</p>" +
+                         (f"<blockquote>{esc(w['message'])}</blockquote>" if w.get("message") else ""))
         if e["summary"]["source"] != "auto" and e["auto"]["bullets"]:
             parts.append("<h3>Automatic analysis</h3><ul>" + "".join(f"<li>{inline_md(b)}</li>" for b in e["auto"]["bullets"]) + "</ul>")
         ch = e["changes"]
@@ -343,6 +349,9 @@ def change_record(e: dict, c: dict) -> dict:
          "extractor": c["extractor"], "name": c["name"], "kind": c["kind"], "type": c["type"],
          "old": c["old"], "new": c["new"], "pct_change": round(c["pct"], 4) if c.get("pct") is not None else None,
          "ratio": round(c["ratio"], 6) if c.get("ratio") is not None else None}
+    w = e.get("why") or {}
+    r["commit_message"] = w.get("subject", e.get("subject"))
+    r["pr_number"], r["pr_url"] = w.get("pr_number"), w.get("pr_url")
     for k in ("key", "decl_type", "from", "still_defined_in", "old_name", "list_index", "file_deleted"):
         if c.get(k):
             r[k] = c[k]
