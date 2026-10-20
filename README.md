@@ -73,6 +73,15 @@ knoblog extract path/to/params.yaml                           # see what knoblog
 Remote repos are cloned blob-less into `.knoblog-cache/`, so only the watched files are downloaded. That keeps
 PX4 and ArduPilot fast. A local path is used in place.
 
+## Why it changed
+
+Every entry carries the commit subject, the first paragraph of the commit message, and the pull request behind it.
+The PR number is read from the message (`Fix foo (#123)`, `Merge pull request #123`) with no network access. Add
+`--pr-lookup` (or `why: {pr_lookup: true}` in the config) to ask the GitHub API `commits/{sha}/pulls`
+endpoint as well. That catches rebase-merged commits, uses `GITHUB_TOKEN` if set, and caches results in
+`.knoblog-cache/prs.json`. `changes.json` and `posts.json` records gain `commit_message`, `pr_number` and `pr_url`.
+Entry pages get a "Why it changed" section. Post text is unchanged.
+
 ## Outputs
 
 | File | What |

@@ -445,6 +445,8 @@ def post_text_for(entries_oldest_first: list[dict], cfg: dict) -> list[dict]:
     out = []
     for i, e in enumerate(entries_oldest_first):
         rec = {"sha": e["sha"], "short": e["short"], "date": e["date"], "commit_url": e.get("url")}
+        if e.get("why"):
+            rec.update(commit_message=e["why"]["subject"], pr_number=e["why"]["pr_number"], pr_url=e["why"]["pr_url"])
         try:
             r = compose(e, cfg, known_names(entries_oldest_first, i))
             if r["posts"]:
