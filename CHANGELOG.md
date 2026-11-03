@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+- "Why it changed": each entry, `changes.json` record and `posts.json` record now carries the commit message plus the
+  PR number and URL. PRs are parsed from the message offline; `--pr-lookup` adds the GitHub API. Entry pages show
+  a "Why it changed" section.
+
 ## 0.1.1 (2026-10-09)
 
 - Packaging: removed the invalid trove classifier `Topic :: Scientific/Engineering :: Robotics` (PyPI rejected the

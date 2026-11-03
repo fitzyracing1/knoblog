@@ -22,6 +22,7 @@ from . import posttext, render
 from .analyze import CONST_LIKE, analyze_commit
 from .extractors import REGISTRY, auto_extractors, run_extractor
 from .gitio import EMPTY_TREE, ensure_clone, head_rev, list_commits, run, unified_diff
+from . import why as W
 from .summarize import deterministic, llm_config, llm_summarize, load_note
 
 PKG = os.path.dirname(os.path.abspath(__file__))
@@ -128,12 +129,17 @@ def cmd_run(args) -> int:
     log(f"[walk] {len(commits)} commits (rev {rev[:7]}, newest {h.get('max_commits')}{', path-limited' if paths else ''})")
     llm = llm_config() if cfg["summaries"].get("llm") else None
     entries, state = [], {"llm_calls": 0}
+    wc = cfg.get("why") or {}
+    lookup = W.PRLookup(W.github_slug(url), bool(args.pr_lookup or wc.get("pr_lookup")),
+                        os.path.join(args.cache_dir or ".knoblog-cache", "prs.json"), int(wc.get("max_api_calls") or 200))
     for meta in commits:
         e = analyze_commit(repo, meta, cfg, url)
+        W.annotate(e, url, lookup)
         summarise(e, cfg, repo, meta, llm, state)
         entries.append(e)
         if args.verbose:
             log(f"[entry] {e['date'][:10]} {e['short']} {e['class']:5} {len(e['changes']):4} changes  {e['summary']['title'][:80]}")
+    lookup.save()
     posts = posttext.post_text_for(entries, cfg) if cfg["post"].get("enabled") else []
     posts_by_sha = {p["sha"]: p for p in posts}
     now = datetime.now(timezone.utc)
@@ -172,7 +178,7 @@ def cmd_run(args) -> int:
     render.write(os.path.join(out, "posts.json"), json.dumps({"generator": f"knoblog {__version__}", "note": "Text only; knoblog never posts.",
                                                                "posts": list(reversed(posts))}, indent=1, ensure_ascii=False))
     render.write(os.path.join(out, "posts.txt"), render.posts_txt(list(reversed(posts))))
-    slim = [{k: e[k] for k in ("sha", "short", "url", "date", "class", "is_root", "is_merge", "stats", "summary", "changes", "components", "lfs")}
+    slim = [{k: e[k] for k in ("sha", "short", "url", "date", "class", "is_root", "is_merge", "stats", "summary", "why", "changes", "components", "lfs")}
             for e in newest]
     render.write(os.path.join(out, "entries.json"), json.dumps({"generated": meta["generated_iso"], "head": rev, "entries": slim}, indent=1, ensure_ascii=False))
     render.write(os.path.join(out, ".nojekyll"), "")
@@ -218,6 +224,7 @@ def main(argv: list[str] | None = None) -> int:
     r.add_argument("--cache-dir", help="where remote repos are cloned (default .knoblog-cache)")
     r.add_argument("--no-fetch", action="store_true", help="use the existing clone as-is")
     r.add_argument("--no-llm", action="store_true", help="never call an LLM")
+    r.add_argument("--pr-lookup", action="store_true", help="ask the GitHub API which PR introduced each commit (uses GITHUB_TOKEN if set)")
     r.add_argument("--github-output", action="store_true", help="write counts to $GITHUB_OUTPUT")
     r.add_argument("-v", "--verbose", action="store_true")
     r.set_defaults(func=cmd_run)
