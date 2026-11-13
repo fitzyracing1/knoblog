@@ -34,6 +34,7 @@ knoblog = "knoblog.cli:main"
 [project.urls]
 Homepage = "https://github.com/fitzyracing1/knoblog"
 Demo = "https://fitzyracing1.github.io/x-algorithm-changelog/"
+Funding = "https://github.com/sponsors/fitzyracing1"
 
 [tool.setuptools]
 packages = ["knoblog", "knoblog.presets", "knoblog.static"]
